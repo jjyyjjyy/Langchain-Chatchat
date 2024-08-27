@@ -7,6 +7,10 @@ from sqlalchemy.exc import OperationalError
 
 from chatchat.server.pydantic_v1 import Field
 from chatchat.server.utils import get_tool_config
+from chatchat.utils import build_logger
+
+
+logger = build_logger()
 
 from .tools_registry import BaseToolOutput, regist_tool
 
@@ -102,6 +106,7 @@ def query_database(query: str, config: dict):
             top_k=top_k,
             return_intermediate_steps=return_intermediate_steps,
         )
+        logger.error(f"query: {query}, tableNames: {table_names}")
         result = db_chain.invoke({"query": query, "table_names_to_use": table_names})
     else:
         # 先预测会使用哪些表，然后再将问题和预测的表给大模型

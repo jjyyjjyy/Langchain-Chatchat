@@ -7,6 +7,7 @@ from .shell import shell
 from .text2image import text2images
 from .text2sql import text2sql
 from .weather_check import weather_check
+from .api_search import api_search
 from .wolfram import wolfram
 from .amap_poi_search import amap_poi_search
 from .amap_weather import amap_weather
